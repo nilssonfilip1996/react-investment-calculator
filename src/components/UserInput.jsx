@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Input from "./Input";
 
 let initUserInput = {
   initInv: 0,
@@ -7,18 +8,17 @@ let initUserInput = {
   dur: 0,
 };
 
-export default function UserInput() {
+
+export default function UserInput({ userInputData, onChangeUserInputData }) {
   const [userInput, setUserInput] = useState(initUserInput);
 
-  function handleChange(id, value) {
-    if (value >= 0) {
-      setUserInput((prevUserInput) => {
-        return {
-          ...prevUserInput,
-          [id]: value,
-        };
-      });
-    }
+  function updateDataField(id, value) {
+    setUserInput((prevUserInput) => {
+      return {
+        ...prevUserInput,
+        [id]: value,
+      };
+    });
   }
 
   console.log(userInput);
@@ -26,40 +26,32 @@ export default function UserInput() {
   return (
     <div id="user-input">
       <div className="input-group">
-        <p>
-          <label>Initial Investment</label>
-          <input
-            required
-            id="initInv"
-            type="number"
-            onChange={(e) =>
-              handleChange(e.target.id, parseInt(e.target.value))
-            }
-            value={userInput["initInv"]}
-          />
-        </p>
-        <p>
-          <label>Annual Investment</label>
-          <input
-            required
-            id="annInv"
-            type="number"
-            onChange={(e) =>
-              handleChange(e.target.id, parseInt(e.target.value))
-            }
-            value={userInput["annInv"]}
-          />
-        </p>
+        <Input
+          labelName={"Initial Investment"}
+          id={"initInv"}
+          value={userInput["initInv"]}
+          onChangeInput={updateDataField}
+        />
+        <Input
+          labelName={"Annual Investment"}
+          id={"annInv"}
+          value={userInput["annInv"]}
+          onChangeInput={updateDataField}
+        />
       </div>
       <div className="input-group">
-        <p>
-          <label>Expected Return</label>
-          <input type="number" />
-        </p>
-        <p>
-          <label>Duration</label>
-          <input type="number" />
-        </p>
+        <Input
+          labelName={"Expected Return"}
+          id={"expRet"}
+          value={userInput["expRet"]}
+          onChangeInput={updateDataField}
+        />
+        <Input
+          labelName={"Duration"}
+          id={"dur"}
+          value={userInput["dur"]}
+          onChangeInput={updateDataField}
+        />
       </div>
     </div>
   );
