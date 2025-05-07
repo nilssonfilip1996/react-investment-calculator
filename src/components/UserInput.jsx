@@ -9,12 +9,14 @@ export default function UserInput({ userInputData, onChangeUserInputData }) {
           id={userInputData[0].id}
           value={userInputData[0].value}
           onChangeInput={onChangeUserInputData}
+          isFloat={false}
         />
         <Input
           labelName={userInputData[1].labelName}
           id={userInputData[1].id}
           value={userInputData[1].value}
           onChangeInput={onChangeUserInputData}
+          isFloat={false}
         />
       </div>
       <div className="input-group">
@@ -23,12 +25,14 @@ export default function UserInput({ userInputData, onChangeUserInputData }) {
           id={userInputData[2].id}
           value={userInputData[2].value}
           onChangeInput={onChangeUserInputData}
+          isFloat={true}
         />
         <Input
           labelName={userInputData[3].labelName}
           id={userInputData[3].id}
           value={userInputData[3].value}
           onChangeInput={onChangeUserInputData}
+          isFloat={false}
         />
       </div>
     </div>

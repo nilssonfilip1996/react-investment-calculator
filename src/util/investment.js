@@ -15,6 +15,8 @@ export function calculateInvestmentResults({
 
   for (let i = 0; i < duration; i++) {
     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
+    console.log(initialInvestment);
+    
     investmentValue += interestEarnedInYear + annualInvestment;
     annualData.push({
       year: i + 1, // year identifier

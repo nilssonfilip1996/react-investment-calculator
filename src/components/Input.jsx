@@ -1,8 +1,8 @@
-export default function Input({ labelName, id, value, onChangeInput }) {
+export default function Input({ labelName, id, value, onChangeInput, isFloat}) {
     
   function handleChange(event) {
     const id = event.target.id;
-    const value = parseInt(event.target.value);
+    const value = isFloat ? parseFloat(event.target.value) : parseInt(event.target.value);
     if (value >= 0) {
       onChangeInput(id, value);
     }
@@ -15,6 +15,7 @@ export default function Input({ labelName, id, value, onChangeInput }) {
         required
         id={id}
         type="number"
+        step={isFloat ? "0.1" : "1"}
         onChange={handleChange}
         value={value}
       />

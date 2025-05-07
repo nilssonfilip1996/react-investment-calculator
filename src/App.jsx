@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UserInput from "./components/UserInput";
+import Result from "./components/Result";
 
 let initUserInput = [
   {id:"initInv", labelName:"Initial Investment", value:0},
@@ -24,6 +25,7 @@ function App() {
   return (
     <main>
       <UserInput userInputData={userInput} onChangeUserInputData={handleUserInputChange}></UserInput>
+      <Result inputData={userInput}/>
     </main>
   );
 }
