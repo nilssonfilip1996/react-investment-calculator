@@ -12,8 +12,24 @@ export default function Result({ inputData }) {
     expectedReturn,
     duration,
   });
-  let totalInterest = 0;
-  console.log(invResults);
+
+  function generateTableRows() { // Returns an array of tr with data in the columns matching the thead.
+    let totalInterest = 0;
+  
+    return (invResults.map((row, i) => {
+      const totalInvested = initialInvestment + annualInvestment*(i+1);
+      totalInterest += row.interest;
+      return (
+        <tr key={row.year}>
+          <td>{row.year}</td>
+          <td>{formatter.format(row.valueEndOfYear)}</td>
+          <td>{formatter.format(row.interest)}</td>
+          <td>{formatter.format(totalInterest)}</td>
+          <td>{formatter.format(totalInvested)}</td>
+        </tr>
+      );
+    }))
+  }
 
   return (
     <div className="center">
@@ -28,19 +44,7 @@ export default function Result({ inputData }) {
           </tr>
         </thead>
         <tbody>
-          {invResults.map((row, i) => {
-            const totalInvested = initialInvestment + annualInvestment*(i+1);
-            totalInterest += row.interest;
-            return (
-              <tr>
-                <td>{row.year}</td>
-                <td>{formatter.format(row.valueEndOfYear)}</td>
-                <td>{formatter.format(row.interest)}</td>
-                <td>{formatter.format(totalInterest)}</td>
-                <td>{formatter.format(totalInvested)}</td>
-              </tr>
-            );
-          })}
+          {generateTableRows()}
         </tbody>
       </table>
     </div>
